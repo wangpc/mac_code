@@ -1,6 +1,4 @@
-My Code Backup
+Mac Code
 ================
-
-* this is my code online backup.  
-
+* This is my mac code backup.  
 

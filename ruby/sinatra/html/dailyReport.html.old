@@ -1,0 +1,213 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Daily Report</title>
+		<style type="text/css">
+			table.layout{
+				font-family: 'Calibri';
+
+			}
+			table.innerTable {
+	            margin: 0 auto;
+	            font-family: verdana,arial,sans-serif;
+	            font-size: 12px;
+	            color: #050505;
+	            border-width: 1px;
+	            border-color: #666666;
+	            border-collapse: collapse;
+	            font-style: normal;
+	            font-weight: bold;
+	        }
+	        table.innerTable th {
+	            border-width: 1px;
+	            padding: 6px;
+	            border-style: solid;
+	            border-color: #666666;
+	            background-color: #ccdfff;
+	            color: #0003B0;
+	            text-align: center;
+	            font-size: 16px;
+	        }
+	        table.innerTable td {
+	            border-width: 1px;
+	            padding: 6px;
+	            border-style: solid;
+	            border-color: #666666;
+	            background-color: #ffffff;
+	            font-family: verdana, arial, sans-serif;
+	        }
+		</style>
+	</head>
+	<body>
+		<script>
+			/*
+			操作表格,为表格添加行,删除行操作
+			*/
+
+			function haha(){
+				var sel = name_list.value;
+				var line = Number(tb.rows[(tb.rows.length-1)].cells[0].innerHTML);
+				// console.log('line=' + line);
+				var post = '';
+				for(var j = 1; j <= line; j++){
+					// console.log('j='+j);
+					post += document.getElementById('task'+j).value;
+					post += '|';
+					post += document.getElementById('fi'+j).value;
+					post += '|';
+					post += document.getElementById('unfi'+j).value;
+					post += '|';
+					post += document.getElementById('pro'+j).value;
+					post += '|';
+					post += document.getElementById('sol'+j).value;
+					post += '|';
+					post += document.getElementById('time'+j).value;
+					post += '|';
+					post += document.getElementById('next'+j).value;
+					if(j != line){
+						post += '^^';
+					}
+					// console.log('when j='+j+', post is: '+post);
+				}
+				// var name = document.getElementById('name_list').attributes['value'];
+				console.log(sel);
+				console.log('post is: '+post);
+				// alert(document.getElementById('task'+line).value);
+
+				var postUrl = 'http://qa.com/dr';//提交地址  
+			 
+			    var ExportForm = document.createElement("FORM");  
+			    document.body.appendChild(ExportForm);  
+			    ExportForm.method = "POST";  
+			    var newElement = document.createElement("input");  
+			    newElement.setAttribute("name", "name");  
+			    newElement.setAttribute("type", "hidden");  
+			    var newElement2 = document.createElement("input");  
+			    newElement2.setAttribute("name", "report");  
+			    newElement2.setAttribute("type", "hidden");  
+			    ExportForm.appendChild(newElement);  
+			    ExportForm.appendChild(newElement2);  
+			    newElement.value = sel;  
+			    newElement2.value = post;  
+			    ExportForm.action = postUrl;  
+			    ExportForm.submit();  
+			}
+			
+			function addrow(){
+    			var tr = document.createElement('tr');
+    			var cellsNum = tb.rows[0].cells.length;
+    			for(var j = 0 ; j < cellsNum ; j++){
+    				var td = document.createElement('td');
+    				var line = Number(tb.rows[(tb.rows.length-1)].cells[0].innerHTML)+1;
+    				switch(j){
+    					case 0:
+    						td.innerHTML=line;
+    						break;
+    					case 1:
+    						td.innerHTML="<input type=\"text\" class=\"innerInput\" id=\"task"+line+"\">";
+    						break;
+    					case 2:
+    						td.innerHTML="<input type=\"text\" class=\"innerInput\" id=\"fi"+line+"\">";
+    						break;
+    					case 3:
+    						td.innerHTML="<input type=\"text\" class=\"innerInput\" id=\"unfi"+line+"\">";
+    						break;
+    					case 4:
+    						td.innerHTML="<input type=\"text\" class=\"innerInput\" id=\"pro"+line+"\">";
+    						break;
+    					case 5:
+    						td.innerHTML="<input type=\"text\" class=\"innerInput\" id=\"sol"+line+"\">";
+    						break;
+    					case 6:
+    						td.innerHTML="<input type=\"text\" class=\"innerInput\" id=\"time"+line+"\">";
+    						break;
+    					case 7:
+    						td.innerHTML="<input type=\"text\" class=\"innerInput\" id=\"next"+line+"\">";
+    						break;
+    				}
+        			tr.appendChild(td);
+    			}
+    			tb.tBodies[0].appendChild(tr);
+			}
+		</script>
+
+		<div align="center" style="margin-top: 50px;">
+			<font face="Calibri" size="36">EZB日报收集</font>
+			<br>
+			<font face="Calibri" size="4" color="#345633">珍惜时间,珍惜生命.</font>
+			<p> </p>
+			
+				<table class="layout">
+					<tbody>
+						<tr>
+							<td>我是:</td>
+							<td>
+								<select style="width: 220px" id='name_list'>
+									<option value="1001">L刘万强</option>
+									<option value="1002">Q钱香桦</option>
+									<option value="1003">W王鹏程</option>
+									<option value="1004">Z朱正宜</option>
+									<option value="1005">D段利伟</option>
+									<option value="1006">L吕晶</option>
+									<option value="1007">F傅琰</option>
+									<option value="1008">X谢杨杨</option>
+									<option value="1009">Z张丹丹</option>
+									<option value="1010">A敖思博</option>
+								</select>
+							</td>
+							<td> </td>
+							<td> </td>
+						</tr>
+						<tr>
+						</tr>
+				
+						<tr>
+							<td colspan="3">输入周报, 每行一条任务.</td>
+							<td align="left"><input type="button" name="add_row" value="+ 添加一行" onClick="addrow();"></td>
+						</tr>
+						<tr></tr>
+						<tr>
+							<td colspan="4">
+								
+									<table class="innerTable" id='tb'>
+										<tbody>
+											<tr>
+												<th>编号</th>
+												<th>任务</th>
+												<th width="180">已完成</th>
+												<th width="180">未完成</th>
+												<th>存在问题</th>
+												<th>解决方案</th>
+												<th>预计完成时间</th>
+												<th>后续计划</th>
+											</tr>
+											<tr>
+												<td>1</td>
+												<td><input type="text" class='innerInput' id='task1'></td>
+												<td><input type="text" class='innerInput' id='fi1'></td>
+												<td><input type="text" class='innerInput' id='unfi1'></td>
+												<td><input type="text" class='innerInput' id='pro1'></td>
+												<td><input type="text" class='innerInput' id='sol1'></td>
+												<td><input type="text" class='innerInput' id='time1'></td>
+												<td><input type="text" class='innerInput' id='next1'></td>
+											</tr>
+										</tbody>
+									</table>
+								
+							</td>
+
+						</tr>
+					<tr>
+						<td colspan="7" align="center">
+							<br>
+							<input type="button" name='submit' value=" >>> 提交 <<< " onClick='haha();'>
+						</td>
+					</tr>
+				</tbody></table>
+			
+		</div>
+
+	</body>
+</html>
+
+
