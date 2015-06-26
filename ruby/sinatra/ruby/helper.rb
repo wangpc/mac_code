@@ -15,6 +15,8 @@ def get_name_from_id id
 		'1009' => 'Zhang Dandan',
 		'1010' => 'Ao Sibo',
 		'1011' => 'Zhao Min',
+		'1012' => 'Liu Jingai',
+		'1013' => 'Chen Ruoxi'
 	}
 
 	name_list[id.to_s]
