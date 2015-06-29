@@ -37,7 +37,6 @@ def report_2_db db_handler, sreport, name
 			
 end
 
-
 class DBModel
 	def initialize
 		@db = SQLite3::Database.new(File.dirname(__FILE__)+'/../db/site.db')
