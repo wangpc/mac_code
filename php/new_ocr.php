@@ -1,5 +1,6 @@
+#!/usr/bin/php
 <?php
-	if(isset( $_FILES['image'] )){
+	// if(isset( $_FILES['image'] )){
 		$ch = curl_init();
 		$url = 'http://apis.baidu.com/apistore/idlocr/ocr';
 		$header = array(
@@ -9,11 +10,11 @@
 
 
 		//测试本地文件
-		$data = file_get_contents($_FILES['image']['tmp_name']);
+		// $data = file_get_contents('/Users/wangpc/mycode/php/2029.jpg',true);
 
 
 		//测试远程文件
-		//$data_temp = file_get_contents("ht tp:// 远程图片链接");
+		$data_temp = file_get_contents("https://www.ezubo.com/Member/common/verify?t=1437459291704");
 
 
 		$data_temp = base64_encode($data_temp);
@@ -51,9 +52,9 @@
 		else{
 			echo "识别出错:".$temp_var["errMsg"];
 		}
-	}else{
-		echo "请输入要识别的图片";
-	}
+	// }else{
+		// echo "请输入要识别的图片";
+	// }
 
 
 ?>
