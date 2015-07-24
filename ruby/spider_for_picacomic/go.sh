@@ -1,2 +1,2 @@
 #!/bin/sh
-nohup ruby ./try.rb > log &
+nohup ruby ./get.rb > log &
