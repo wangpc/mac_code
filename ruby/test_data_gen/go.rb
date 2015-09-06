@@ -21,3 +21,11 @@ end
 
 def account_verify
 end
+
+
+def test
+	t = Wangpc::Tester.new
+	t.do
+end
+
+test
