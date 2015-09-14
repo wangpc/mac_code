@@ -6,7 +6,7 @@ require 'json'
 module Wangpc
 
 	$DB = 'mysql://asd'
-	$API_URI = 'http://127.0.0.1'
-	$TEST = 'Test'
+	$API_URI = 'http://i.ezubo.com'
+
 	
 end

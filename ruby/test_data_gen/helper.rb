@@ -1,41 +1,32 @@
 require './conf.rb'
 
 module Wangpc
-
-	class HTTPHelper
-	
-		def initialize
+	class UserHelper
+		def initializeUser
+			# do sth
 		end
 
-		def send_get
-		end
+		def create_user user_name, phone, pass, invitorid, ip, sourcetype
+			# we need user_name/pass/phone/invitorid/ip/sourcetype
+			res = HTTParty.post($API_URI, {body: {
+				username: user_name,
+				phone: phone,
+				pass: pass,
+				invitorid: invitorid,
+				ip: ip,
+				sourcetype: sourcetype,
+				}})
+			return res.body # string
 
-		def send_post
-		end
-		
-		 
-	end
-
-
-
-	class DBHelper
-
-		def initialize
-		end
-
-
-		def db_write
 		end
 	end
 
-	class Tester
+	class AccountHelper
 		def initialize
-			puts 'Test init.'
 		end
 
-		def do
-			puts Wangpc::TEST
+		def balance_change
 		end
+
 	end
-
 end
