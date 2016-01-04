@@ -1,4 +1,4 @@
-number = '21030219970810223'
+number = '21030219840810223'
 sum = 0
 sum += (number[0].to_i) * 7
 sum += (number[1].to_i) * 9
